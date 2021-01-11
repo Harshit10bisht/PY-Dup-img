@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <title>Application</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div class="bg-img"></div>
+    <div class="topic">
+        <h1>Searching Near Exact Duplicate Image</h1>
+    </div>
+    <div class="sec-1">
+        <label for="strings">Import images from the directory </label>
+        <button class="btn">Import</button>
+    </div>
+    <div class="sec-1">
+        <label for="strings">Wanted to find the duplicates here </label>
+        <button class="btn">Search</button>
+    </div> 
+    <div class="sec-1 modal-1">
+        <label for="strings">RESULT : </label>
+        <label for="strings" style="color: #0cb8d6d8;"></label><br><br>
+        <label for="strings">Wanna know which ones...HERE </label>
+        <button id="result" class="btn"><i class='fas fa-chevron-circle-right' style='font-size:40px;color:#28dfff'></i></button>
+        <script type="text/javascript">
+            document.getElementById("result").onclick = function () {
+                location.href = "./alt.html";
+            };
+        </script>
+    </div> 
+    <button onclick = "location.href = '{% url 'script' %}'">Execute</button> <hr>
+    {% if data %}
+    {{data | safe}}
+    {% endif %}
+
+    <form action="/external/" method="post">
+        {% csrf_token %}
+        Input Text:
+        <input type="text" name="param" required><br><br>
+        {{data_external}}<br><br>
+        {{data1}}<br><br>
+        <input type="submit" value="Execute External Python Script">
+    </form>
+    
+</body>
+</html>
